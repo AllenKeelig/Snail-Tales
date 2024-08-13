@@ -62,6 +62,8 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_xuur4")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
@@ -71,5 +73,5 @@ shape = SubResource("RectangleShape2D_vlip5")
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0v3kg")
 animation = &"idle"
-frame_progress = 0.0797718
+frame_progress = 0.872163
 offset = Vector2(0, -10)

@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 const speed = 50
 var current_dir = "none"
+var health = 5
 
 func _ready():
 	$AnimatedSprite2D2.play("idle")

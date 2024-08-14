@@ -1,9 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://bi34gkbrjk8dy"]
+[gd_scene load_steps=13 format=3 uid="uid://bi34gkbrjk8dy"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_xuur4"]
-[ext_resource type="Texture2D" uid="uid://begufi1v1vqtt" path="res://Sprites/Snail-down.png" id="2_ft41p"]
+[ext_resource type="Texture2D" uid="uid://begufi1v1vqtt" path="res://Sprites/snail-down.png" id="2_ft41p"]
 [ext_resource type="Texture2D" uid="uid://cnsnda0kpu1kh" path="res://Sprites/Snail-down_2.png" id="3_j56b4"]
-[ext_resource type="Texture2D" uid="uid://jobxxlb5h2p2" path="res://Sprites/Snail-idle_left.png" id="4_vmdxd"]
+[ext_resource type="Texture2D" uid="uid://702seaenecv2" path="res://Sprites/Snail-idle_2.png" id="4_btnwt"]
 [ext_resource type="Texture2D" uid="uid://b80e8pl3q5ci3" path="res://Sprites/Snail.png" id="5_f5pu2"]
 [ext_resource type="Texture2D" uid="uid://dr82lx0emd8ew" path="res://Sprites/Snail-left.png" id="6_10jth"]
 [ext_resource type="Texture2D" uid="uid://b1rlkh53d1yna" path="res://Sprites/Snail-left_2.png" id="7_lxigp"]
@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cnq6bn4nv6akl" path="res://Sprites/Snail-up_2.png" id="9_ds53c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vlip5"]
-size = Vector2(10, 10)
+size = Vector2(4, 6)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0v3kg"]
 animations = [{
@@ -24,29 +24,29 @@ animations = [{
 }],
 "loop": true,
 "name": &"down",
-"speed": 5.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 2.0,
-"texture": ExtResource("4_vmdxd")
+"texture": ExtResource("4_btnwt")
 }, {
 "duration": 3.0,
 "texture": ExtResource("5_f5pu2")
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 3.0,
 "texture": ExtResource("6_10jth")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": ExtResource("7_lxigp")
 }],
 "loop": true,
 "name": &"side",
-"speed": 5.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 2.0,
@@ -57,21 +57,36 @@ animations = [{
 }],
 "loop": true,
 "name": &"up",
-"speed": 5.0
+"speed": 4.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_2eh18"]
+radius = 5.0
+
 [node name="Player" type="CharacterBody2D"]
-z_index = 1
+z_index = 2
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_xuur4")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(0, -10)
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_vlip5")
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0v3kg")
-animation = &"idle"
-frame_progress = 0.872163
-offset = Vector2(0, -10)
+animation = &"down"
+frame_progress = 0.0153731
+
+[node name="Player_hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_hitbox"]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_2eh18")
+
+[node name="I-frame" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="body_entered" from="Player_hitbox" to="." method="_on_player_hitbox_body_entered"]
+[connection signal="body_exited" from="Player_hitbox" to="." method="_on_player_hitbox_body_exited"]
+[connection signal="timeout" from="I-frame" to="." method="_on_iframe_timeout"]

@@ -3,12 +3,19 @@ extends CharacterBody2D
 const speed = 50
 var current_dir = "none"
 var health = 5
+var enemy_range = false
+var i_frame = true
+var alive = true
+
 
 func _ready():
 	$AnimatedSprite2D2.play("idle")
 
 func _physics_process(delta):
 	player_movement(delta)
+	enemy_attacks()
+	if health <= 0:
+		alive = false #add end screen
 
 func player_movement(_delta):
 	
@@ -58,3 +65,24 @@ func play_anim(movement):
 	elif dir == "down":
 		anim.flip_h = false
 		anim.play("down")
+
+
+func _on_player_hitbox_body_entered(body):
+	if body.has_method("enemy"):
+		enemy_range = true
+
+func _on_player_hitbox_body_exited(body):
+	if body.has_method("enemy"):
+		enemy_range = false
+
+func enemy_attacks():
+	if enemy_range and i_frame:
+		health = health - 1
+		i_frame = false
+		$"I-frame".start()
+
+func attack():
+	pass
+
+func _on_iframe_timeout():
+	i_frame = true

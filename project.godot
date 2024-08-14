@@ -14,3 +14,7 @@ config/name="Snail Tales"
 run/main_scene="res://.godot/Garden.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*res://Scripts/global.gd"

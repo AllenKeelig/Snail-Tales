@@ -9,6 +9,11 @@ Timed messages that disappear after 60 seconds.
 Getting Started
 Prerequisites
 Godot Engine (version 4.2.2 or later)
+
+controls:  
+cardinal directions: movement  
+z: attack  
+
 Installation
 Clone the repository:
 sh

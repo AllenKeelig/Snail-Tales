@@ -1,11 +1,11 @@
-[gd_scene load_steps=15 format=3]
+[gd_scene load_steps=15 format=3 uid="uid://bpqdt4v46yihn"]
 
 [ext_resource type="Texture2D" uid="uid://b3d4jhib2hjuf" path="res://Solaria Demo Update 01.png" id="1_1rimo"]
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="2_vg8pq"]
-[ext_resource type="Texture2D" uid="uid://begufi1v1vqtt" path="res://Sprites/Snail-down.png" id="3_esil8"]
+[ext_resource type="Texture2D" uid="uid://begufi1v1vqtt" path="res://Sprites/snail-down.png" id="3_esil8"]
 [ext_resource type="Texture2D" uid="uid://cnsnda0kpu1kh" path="res://Sprites/Snail-down_2.png" id="4_tf63m"]
-[ext_resource type="Texture2D" path="res://Snail.png" id="5_mwnrc"]
-[ext_resource type="Texture2D" uid="uid://jobxxlb5h2p2" path="res://Sprites/Snail-idle_left.png" id="6_3qsxb"]
+[ext_resource type="Texture2D" uid="uid://b80e8pl3q5ci3" path="res://Sprites/Snail.png" id="5_mwnrc"]
+[ext_resource type="Texture2D" uid="uid://702seaenecv2" path="res://Sprites/Snail-idle_2.png" id="6_3qsxb"]
 [ext_resource type="Texture2D" uid="uid://dr82lx0emd8ew" path="res://Sprites/Snail-left.png" id="7_qc5go"]
 [ext_resource type="Texture2D" uid="uid://b1rlkh53d1yna" path="res://Sprites/Snail-left_2.png" id="8_row7k"]
 

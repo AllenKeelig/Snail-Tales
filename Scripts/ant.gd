@@ -65,10 +65,5 @@ func attacked():
 		i_frame = false
 		$"I-frame".start()
 
-
-
-
-
-
 func _on_iframe_timeout():
 	i_frame = true

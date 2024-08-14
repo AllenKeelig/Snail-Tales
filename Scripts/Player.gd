@@ -10,7 +10,7 @@ var attack_cooldown = true
 var slime = preload("res://Scenes/slime.tscn")
 
 func _ready():
-	$AnimatedSprite2D2.play("idle")
+	$AnimatedSprite2D.play("idle")
 
 func _physics_process(delta):
 	
@@ -51,7 +51,7 @@ func player_movement(_delta):
 
 func play_anim(movement):
 	var dir = current_dir
-	var anim = $AnimatedSprite2D2
+	var anim = $AnimatedSprite2D
 	
 	if movement == 0:
 		anim.flip_h = false

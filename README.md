@@ -1,5 +1,7 @@
 Snail Tales - a snail dating sim
 
+https://allenkeelig.itch.io/snail-tales
+
 ## Authors
 
 Allen Keeling  

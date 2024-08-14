@@ -76,7 +76,11 @@ shape = SubResource("RectangleShape2D_vlip5")
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0v3kg")
 animation = &"down"
-frame_progress = 0.0153731
+frame_progress = 0.0895927
+
+[node name="Attack_cooldown" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
 
 [node name="Player_hitbox" type="Area2D" parent="."]
 
@@ -87,6 +91,12 @@ shape = SubResource("CircleShape2D_2eh18")
 [node name="I-frame" type="Timer" parent="."]
 wait_time = 2.0
 
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)
+
+[connection signal="timeout" from="Attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="body_entered" from="Player_hitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="Player_hitbox" to="." method="_on_player_hitbox_body_exited"]
 [connection signal="timeout" from="I-frame" to="." method="_on_iframe_timeout"]

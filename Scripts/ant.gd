@@ -8,6 +8,7 @@ var home = Vector2(101, 420)
 var health = 10
 var hitbox = false
 var alive = true
+var i_frame = true
 
 func _ready():
 	$"antanimations2".play("default")
@@ -50,16 +51,25 @@ func _on_detection_area_body_exited(body):
 func enemy():
 	pass
 
-
-func _on_enemy_hitbox_body_entered(body):
-	if body.has_method("attack"):
+func _on_enemy_hitbox_area_entered(area):
+	if area.has_method("slime_attack"):
 		hitbox = true
 
-func _on_enemy_hitbox_body_exited(body):
-	if body.has_method("attack"):
+func _on_enemy_hitbox_area_exited(area):
+	if area.has_method("slime_attack"):
 		hitbox = false
 
 func attacked():
-	if hitbox:
+	if hitbox and i_frame:
 		health = health - 1
+		i_frame = false
+		$"I-frame".start()
+		print(health)
 
+
+
+
+
+
+func _on_iframe_timeout():
+	i_frame = true

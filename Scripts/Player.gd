@@ -1,17 +1,19 @@
 extends CharacterBody2D
 
 const speed = 50
-var current_dir = "none"
+var current_dir = "RIGHT"
 var health = 5
 var enemy_range = false
 var i_frame = true
 var alive = true
-
+var attack_cooldown = true
+var slime = preload("res://Scenes/slime.tscn")
 
 func _ready():
 	$AnimatedSprite2D2.play("idle")
 
 func _physics_process(delta):
+	
 	player_movement(delta)
 	enemy_attacks()
 	if health <= 0:
@@ -20,22 +22,22 @@ func _physics_process(delta):
 func player_movement(_delta):
 	
 	if Input.is_action_pressed("ui_right"):
-		current_dir = "right"
+		current_dir = "RIGHT"
 		play_anim(1)
 		velocity.x = speed
 		velocity.y = 0
 	elif Input.is_action_pressed("ui_left"):
-		current_dir = "left"
+		current_dir = "LEFT"
 		play_anim(1)
 		velocity.x = -speed
 		velocity.y = 0
 	elif Input.is_action_pressed("ui_down"):
-		current_dir = "down"
+		current_dir = "DOWN"
 		play_anim(1)
 		velocity.x = 0
 		velocity.y = speed
 	elif Input.is_action_pressed("ui_up"):
-		current_dir = "up"
+		current_dir = "UP"
 		play_anim(1)
 		velocity.x = 0
 		velocity.y = -speed
@@ -43,8 +45,9 @@ func player_movement(_delta):
 		play_anim(0)
 		velocity.x = 0
 		velocity.y = 0
-	
 	move_and_slide()
+	if Input.is_action_just_pressed("Attack"):
+		attack()
 
 func play_anim(movement):
 	var dir = current_dir
@@ -53,16 +56,16 @@ func play_anim(movement):
 	if movement == 0:
 		anim.flip_h = false
 		anim.play("idle")
-	elif dir == "right":
+	elif dir == "RIGHT":
 		anim.flip_h = false
 		anim.play("side")
-	elif dir == "left":
+	elif dir == "LEFT":
 		anim.flip_h = true
 		anim.play("side")
-	elif dir == "up":
+	elif dir == "UP":
 		anim.flip_h = false
 		anim.play("up")
-	elif dir == "down":
+	elif dir == "DOWN":
 		anim.flip_h = false
 		anim.play("down")
 
@@ -82,7 +85,17 @@ func enemy_attacks():
 		$"I-frame".start()
 
 func attack():
-	pass
+	if attack_cooldown == true:
+		attack_cooldown = false
+		var slime_instance = slime.instantiate()
+		slime_instance.direction = current_dir
+		slime_instance.global_position = $Marker2D.global_position
+		add_child(slime_instance)
+		$"Attack_cooldown".start()
 
 func _on_iframe_timeout():
 	i_frame = true
+
+
+func _on_attack_cooldown_timeout():
+	attack_cooldown = true

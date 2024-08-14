@@ -35,4 +35,3 @@ func slime_attack():
 func _on_body_entered(body):
 	if body.has_method("enemy"):
 		self.queue_free()
-		print("hit")

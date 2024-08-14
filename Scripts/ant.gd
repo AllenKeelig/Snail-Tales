@@ -64,7 +64,6 @@ func attacked():
 		health = health - 1
 		i_frame = false
 		$"I-frame".start()
-		print(health)
 
 
 
